@@ -2,11 +2,7 @@ var express = require('express');
 
 var router = express.Router();
 
-var test = "test branche protection";
-
 const { db } = require("../services/database");
-
- 
 
 /* GET users listing. */
 
