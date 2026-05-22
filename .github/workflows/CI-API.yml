@@ -12,6 +12,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      mongodb:
+        image: mongo:6
+        ports:
+          - 27017:27017
+
     env:
       MONGO_URL: mongodb://localhost:27017
       DB_NAME: mydb
