@@ -4,7 +4,7 @@ var router = express.Router();
 
 const { db } = require("../services/database");
 
- 
+ const test = "hello";
 
 /* GET users listing. */
 
