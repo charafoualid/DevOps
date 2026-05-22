@@ -12,6 +12,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      MONGO_URL: mongodb://localhost:27017
+      DB_NAME: mydb
+
     defaults:
       run:
         working-directory: .
