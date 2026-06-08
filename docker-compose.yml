@@ -1,0 +1,24 @@
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devops
+      MONGO_INITDB_ROOT_PASSWORD: devops123
+    volumes:
+      - mongo-data:/data/db
+      - ./database/init.js:/docker-entrypoint-initdb.d/init.js:ro
+
+  api:
+    build: .
+    ports:
+      - "3000:12345"
+    environment:
+      PORT: 12345
+      MONGO_URL: mongodb://devops:devops123@mongo:27017
+      DB_NAME: local
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:

@@ -6,7 +6,7 @@ const uri = process.env.MONGO_URL;
 
 const client = new MongoClient(uri);
 
-const db = client.db(process.env.DB_NAME || "mydb");
+const db = client.db(process.env.DB_NAME || "local");
 
 module.exports = {
   db: db,
