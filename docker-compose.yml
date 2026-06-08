@@ -8,6 +8,23 @@ services:
     volumes:
       - mongo-data:/data/db
       - ./database/init.js:/docker-entrypoint-initdb.d/init.js:ro
+  
+  audit-mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: audit
+      MONGO_INITDB_ROOT_PASSWORD: audit123
+    volumes:
+      - audit-mongo-data:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 
   api:
     build: .
@@ -17,8 +34,21 @@ services:
       PORT: 12345
       MONGO_URL: mongodb://devops:devops123@mongo:27017
       DB_NAME: local
+      RABBITMQ_URL: amqp://rabbitmq:5672
     depends_on:
       - mongo
+      - rabbitmq
+  
+  audit-service:
+    build: ./audit-service
+    environment:
+      RABBITMQ_URL: amqp://rabbitmq:5672
+      AUDIT_MONGO_URL: mongodb://audit:audit123@audit-mongo:27017
+      AUDIT_DB_NAME: auditdb
+    depends_on:
+      - audit-mongo
+      - rabbitmq
 
 volumes:
   mongo-data:
+  audit-mongo-data:

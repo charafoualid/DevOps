@@ -9,6 +9,7 @@
     "dev": "nodemon --legacy-watch -r dotenv/config ./bin/www"
   },
   "dependencies": {
+    "amqplib": "^2.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^17.4.2",
