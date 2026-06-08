@@ -4,7 +4,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "lint": "npx eslint ."
   },
   "dependencies": {
     "amqplib": "^0.10.5",
