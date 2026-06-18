@@ -1,9 +1,6 @@
 name: CI Audit Service
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -11,10 +8,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: audit-service
 
     steps:
       - name: Checkout repository
@@ -25,13 +18,21 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: audit-service/package-lock.json
+          cache-dependency-path: |
+            package-lock.json
+            audit-service/package-lock.json
 
-      - name: Install dependencies
+      - name: Install root dependencies
         run: npm ci
+
+      - name: Install audit-service dependencies
+        run: npm ci
+        working-directory: audit-service
 
       - name: Run ESLint
         run: npm run lint
+        working-directory: audit-service
 
       - name: Run tests
         run: npm test
+        working-directory: audit-service
