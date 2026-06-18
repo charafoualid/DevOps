@@ -62,9 +62,15 @@ services:
     image: grafana/grafana
     ports:
       - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - grafana-data:/var/lib/grafana
     depends_on:
       - prometheus
 
 volumes:
   mongo-data:
   audit-mongo-data:
+  grafana-data:
