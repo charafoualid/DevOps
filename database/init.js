@@ -1,6 +1,8 @@
-db = db.getSiblingDB("local");
+/* global db */
 
-db.users.insertMany([
+const localDb = db.getSiblingDB("local");
+
+localDb.users.insertMany([
   {
     name: "Test User 1",
     email: "test1@example.com"

@@ -33,12 +33,14 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function(_req, _res, next) {
   next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
+  void next;
+
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
