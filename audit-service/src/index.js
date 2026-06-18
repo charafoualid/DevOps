@@ -1,7 +1,7 @@
 const amqp = require("amqplib");
 const { MongoClient } = require("mongodb");
 
-const testLint = "pipeline moet falen";
+//const testLint = "pipeline moet falen";
 
 async function start() {
   const mongoClient = new MongoClient(process.env.AUDIT_MONGO_URL);
