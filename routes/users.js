@@ -5,6 +5,7 @@ var router = express.Router();
 const { db } = require("../services/database");
 const { publishUserCreated } = require("../services/messageQueue");
 
+const unused = "";
 
 router.get('/', async function(req, res) {
 
