@@ -1,0 +1,17 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+ENV PORT=12345
+ENV MONGO_URL=mongodb://mongo-devops:27017
+ENV DB_NAME=local
+
+EXPOSE 12345
+
+CMD ["npm", "run", "dev"]
